@@ -52,6 +52,7 @@ pushd driver
 %{__install} kmod-%{kmod_name}.conf %{buildroot}%{_sysconfdir}/depmod.d/
 # Set the module(s) to be executable, so that they will be stripped when packaged.
 find %{buildroot} -type f -name \*.ko -exec %{__chmod} u+x \{\} \;
+rm -rf %{buildroot}/lib/modules/`rpm -qa --queryformat "%%{VERSION}-%%{RELEASE}.%%{ARCH}" kernel-devel`/modules.*
 popd
 pushd Butler
 %{__install} -d %{buildroot}%{_bindir}
@@ -63,6 +64,7 @@ chrpath --delete %{buildroot}%{_bindir}/Merging_RAVENNA_Daemon
 %defattr(-,root,root,-)
 %doc README.md
 /lib/modules/*/extra/%{kmod_name}/
+%exclude /lib/modules/*/modules.*
 %{_sysconfdir}/depmod.d/kmod-%{kmod_name}.conf
 
 %files -n merging-butler
