@@ -17,6 +17,7 @@ License:        GPL
 URL:            https://www.merging.com/
 Source0:        https://bitbucket.org/MergingTechnologies/ravenna-alsa-lkm/get/%{git_commit_sha}.tar.gz#/%{name}-%{version}.tar.gz
 
+BuildRequires: elfutils-libelf-devel
 BuildRequires: chrpath
 BuildRequires: kernel-devel
 
